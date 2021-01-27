@@ -1,0 +1,21 @@
+# Создать несколько файлов. Создать директорию, переместить файл туда. Удалить все созданные в этом и предыдущем задании директории и файлы.
+
+pavel@ubuntu:~$ mkdir test
+
+pavel@ubuntu:~$ touch 1.txt 2.txt
+
+pavel@ubuntu:~$ ls
+ 1.txt   snap    test        test2.txt   test.txt            Видео       Загрузки      Музыка         'Рабочий стол'
+ 2.txt   state   test1.txt   test4.txt   thinclient_drives   Документы   Изображения   Общедоступные   Шаблоны
+
+pavel@ubuntu:~$ mv {1.txt,2.txt} test/
+
+pavel@ubuntu:~$ ls test/
+1.txt  2.txt
+
+pavel@ubuntu:~$ rm test1.txt test2.txt test4.txt
+
+pavel@ubuntu:~$ rm -r test/
+
+pavel@ubuntu:~$ ls
+snap   state   test.txt   thinclient_drives   Видео   Документы   Загрузки   Изображения   Музыка   Общедоступные  'Рабочий стол'   Шаблоны

@@ -1,0 +1,48 @@
+# В ОС Linux скрытыми файлами считаются те, имена которых начинаются с символа “.”. Сколько скрытых файлов в вашем домашнем каталоге? 
+#(Использовать конвейер. Подсказка: для подсчета количества строк можно использовать wc.)
+
+pavel@ubuntu:~$ find . -maxdepth 1 -type f -name ".*" | wc -l
+15
+
+pavel@ubuntu:~$ ls -la
+итого 272
+drwxr-xr-x 22 pavel pavel  4096 янв 27 12:39  .
+drwxr-xr-x  3 root  root   4096 янв 20 11:31  ..
+-rw-------  1 pavel pavel 14079 янв 26 23:28  .bash_history
+-rw-r--r--  1 pavel pavel   220 янв 20 11:31  .bash_logout
+-rw-r--r--  1 pavel pavel  3771 янв 20 11:31  .bashrc
+drwx------ 19 pavel pavel  4096 янв 22 21:57  .cache
+drwx------ 18 pavel pavel  4096 янв 26 15:41  .config
+-rw-rw-r--  1 pavel pavel   218 янв 22 14:08  .gitconfig
+drwxrwxr-x  5 pavel pavel  4096 янв 22 10:06  .gitkraken
+drwx------  3 pavel pavel  4096 янв 26 10:30  .gnupg
+-rw-------  1 pavel pavel    75 янв 26 23:14  .lesshst
+drwxr-xr-x  3 pavel pavel  4096 янв 20 11:37  .local
+drwx------  5 pavel pavel  4096 янв 20 11:48  .mozilla
+-rw-r--r--  1 pavel pavel   354 янв 20 11:58  .pam_environment
+drwx------  3 pavel pavel  4096 янв 20 13:37  .pki
+-rw-r--r--  1 pavel pavel   807 янв 20 11:31  .profile
+-rw-rw-r--  1 pavel pavel    66 янв 23 14:40  .selected_editor
+drwxr-xr-x  4 pavel pavel  4096 янв 26 15:43  snap
+drwx------  2 pavel pavel  4096 янв 26 18:42  .ssh
+-rw-r--r--  1 pavel pavel 60138 янв 26 21:05  state
+-rw-r--r--  1 pavel pavel     0 янв 20 12:01  .sudo_as_admin_successful
+-rw-rw-r--  1 pavel pavel   173 янв 26 20:52  test.txt
+-rw-r--r--  1 pavel pavel 12288 янв 21 15:32  .test.txt.swp
+drwxrwxr-t  2 pavel pavel  4096 янв 20 12:23  thinclient_drives
+drwx------  6 pavel pavel  4096 янв 22 15:11  .thunderbird
+-rw-------  1 pavel pavel  3917 янв 26 22:05  .viminfo
+drwx------  2 pavel pavel  4096 янв 20 12:24  .vnc
+-rw-------  1 pavel pavel   104 янв 20 15:30  .Xauthority
+-rw-r--r--  1 pavel pavel 19254 янв 20 19:14  .xorgxrdp.10.log
+-rw-r--r--  1 pavel pavel 21973 янв 20 12:57  .xorgxrdp.10.log.old
+-rw-------  1 pavel pavel 10610 янв 20 15:30  .xsession-errors
+drwxr-xr-x  2 pavel pavel  4096 янв 20 11:59  Видео
+drwxr-xr-x  2 pavel pavel  4096 янв 20 11:59  Документы
+drwxr-xr-x  2 pavel pavel  4096 янв 26 14:37  Загрузки
+drwxr-xr-x  2 pavel pavel  4096 янв 22 15:09  Изображения
+drwxr-xr-x  2 pavel pavel  4096 янв 20 11:59  Музыка
+drwxr-xr-x  2 pavel pavel  4096 янв 20 11:59  Общедоступные
+drwxr-xr-x  4 pavel pavel  4096 янв 25 09:51 'Рабочий стол'
+drwxr-xr-x  2 pavel pavel  4096 янв 20 11:59  Шаблоны
+

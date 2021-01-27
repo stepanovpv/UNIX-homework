@@ -1,0 +1,25 @@
+# * Отобразить в /dev список устройств, которые в настоящее время используются вашим UID (
+# для этого используется команда lsof). Организовать конвейер через less, чтобы посмотреть их должным образом.
+
+pavel@ubuntu:~$ pavel@ubuntu:~$ lsof /dev | less
+
+lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/125/gvfs
+      Output information may be incomplete.
+lsof: status error on less: No such file or directory
+COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+systemd   3239 pavel    0r   CHR    1,3      0t0    6 /dev/null
+pulseaudi 3245 pavel    0r   CHR    1,3      0t0    6 /dev/null
+tracker-m 3253 pavel    0r   CHR    1,3      0t0    6 /dev/null
+dbus-daem 3258 pavel    0u   CHR    1,3      0t0    6 /dev/null
+gvfsd     3266 pavel    0r   CHR    1,3      0t0    6 /dev/null
+gvfsd-fus 3271 pavel    0r   CHR    1,3      0t0    6 /dev/null
+gvfsd-fus 3271 pavel    3u   CHR 10,229      0t0   87 /dev/fuse
+gvfs-udis 3279 pavel    0r   CHR    1,3      0t0    6 /dev/null
+gvfs-mtp- 3301 pavel    0r   CHR    1,3      0t0    6 /dev/null
+gvfs-afc- 3311 pavel    0r   CHR    1,3      0t0    6 /dev/null
+gvfs-gpho 3317 pavel    0r   CHR    1,3      0t0    6 /dev/null
+gvfs-goa- 3322 pavel    0r   CHR    1,3      0t0    6 /dev/null
+goa-daemo 3327 pavel    0u   CHR    1,3      0t0    6 /dev/null
+goa-ident 3350 pavel    0u   CHR    1,3      0t0    6 /dev/null
+less      3577 pavel    3r   CHR    5,0      0t0   13 /dev/tty
+(END)

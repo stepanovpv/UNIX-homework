@@ -1,0 +1,73 @@
+# Просмотреть содержимое директорий /etc, /proc, /home. Посмотреть пару произвольных файлов в /etc.
+
+pavel@ubuntu:/$ cd /
+
+pavel@ubuntu:/$ ls /etc
+acpi                           chatscripts          firefox       hostname         libpaper.d      nanorc                   profile.d      sgml               udisks2
+adduser.conf                   console-setup        fonts         hosts            libreoffice     netplan                  protocols      shadow             ufw
+alsa                           cracklib             fprintd.conf  hosts.allow      locale.alias    network                  pulse          shadow-            update-manager
+alternatives                   cron.d               fstab         hosts.deny       locale.gen      networkd-dispatcher      python3        shells             update-motd.d
+anacrontab                     cron.daily           fuse.conf     hp               localtime       NetworkManager           python3.8      skel               update-notifier
+apg.conf                       cron.hourly          fwupd         ifplugd          logcheck        networks                 rc0.d          snmp               UPower
+apm                            cron.monthly         gai.conf      init             login.defs      newt                     rc1.d          speech-dispatcher  usb_modeswitch.conf
+apparmor                       crontab              gamemode.ini  init.d           logrotate.conf  nsswitch.conf            rc2.d          ssh                usb_modeswitch.d
+apparmor.d                     cron.weekly          gdb           initramfs-tools  logrotate.d     openvpn                  rc3.d          ssl                vconsole.conf
+apport                         cups                 gdm3          inputrc          lsb-release     opt                      rc4.d          subgid             vim
+appstream.conf                 cupshelpers          geoclue       insserv.conf.d   ltrace.conf     os-release               rc5.d          subgid-            vmware-tools
+apt                            dbus-1               ghostscript   iproute2         machine-id      PackageKit               rc6.d          subuid             vtrgb
+avahi                          dconf                glvnd         issue            magic           pam.conf                 rc.local       subuid-            vulkan
+bash.bashrc                    debconf.conf         gnome         issue.net        magic.mime      pam.d                    rcS.d          sudoers            wgetrc
+bash_completion                debian_version       groff         kernel           mailcap         papersize                resolv.conf    sudoers.d          wpa_supplicant
+bash_completion.d              default              group         kernel-img.conf  mailcap.order   passwd                   rmt            sysctl.conf        X11
+bindresvport.blacklist         deluser.conf         group-        kerneloops.conf  manpath.config  passwd-                  rpc            sysctl.d           xattr.conf
+binfmt.d                       depmod.d             grub.d        ldap             mc              pcmcia                   rsyslog.conf   systemd            xdg
+bluetooth                      dhcp                 gshadow       ld.so.cache      mime.types      perl                     rsyslog.d      terminfo           xml
+brlapi.key                     dictionaries-common  gshadow-      ld.so.conf       mke2fs.conf     pki                      rygel.conf     thermald           xrdp
+brltty                         dpkg                 gss           ld.so.conf.d     modprobe.d      pm                       sane.d         thunderbird        zsh_command_not_found
+brltty.conf                    e2scrub.conf         gtk-2.0       legal            modules         pnm2ppa.conf             security       timezone
+ca-certificates                emacs                gtk-3.0       libao.conf       modules-load.d  polkit-1                 selinux        tmpfiles.d
+ca-certificates.conf           environment          hdparm.conf   libaudit.conf    mtab            popularity-contest.conf  sensors3.conf  ubuntu-advantage
+ca-certificates.conf.dpkg-old  environment.d        host.conf     libblockdev      mtools.conf     ppp                      sensors.d      ucf.conf
+calendar                       ethertypes           hostid        libnl-3          mysql           profile                  services       udev
+
+pavel@ubuntu:/$ ls /proc
+1     1034  1107  1196  126   1300  1413  1520  200  215   228  241  255   2826  33   416  806  859  955         cpuinfo        kallsyms     mpt           sysrq-trigger
+10    1035  111   1199  1264  1305  1414  1535  201  216   229  242  256   2833  355  432  808  86   96          crypto         kcore        mtrr          sysvipc
+100   104   1111  12    1266  1308  1421  1540  203  217   23   243  257   2834  383  434  81   87   965         devices        keys         net           thread-self
+101   1042  112   120   127   131   1459  1547  204  218   230  244  258   2840  384  438  818  88   966         diskstats      key-users    pagetypeinfo  timer_list
+1010  1046  1120  121   1270  132   146   155   205  219   231  245  259   29    385  524  82   886  97          dma            kmsg         partitions    tty
+1011  105   113   122   1272  1320  1462  1555  206  22    232  246  26    290   391  6    822  89   98          driver         kpagecgroup  pressure      uptime
+102   106   114   123   1274  1323  1463  1559  207  220   233  247  260   291   395  751  825  893  99          dynamic_debug  kpagecount   sched_debug   version
+1020  107   1143  1235  1275  133   1468  1596  208  221   234  248  261   292   4    752  832  897  acpi        execdomains    kpageflags   schedstat     version_signature
+1021  1073  115   124   128   135   1470  16    209  222   235  249  262   295   400  772  837  9    asound      fb             loadavg      scsi          vmallocinfo
+1023  108   1155  1248  1282  136   1477  1610  21   223   236  25   2669  3     403  775  838  91   bootconfig  filesystems    locks        self          vmstat
+1025  1083  116   125   129   1378  1483  1612  210  224   237  250  28    30    405  793  84   924  buddyinfo   fs             mdstat       slabinfo      zoneinfo
+1027  109   117   1254  1296  1397  149   17    211  225   238  251  2803  31    407  794  843  93   bus         interrupts     meminfo      softirqs
+1028  1094  118   1255  1298  14    1490  18    212  226   239  252  2811  315   411  797  847  935  cgroups     iomem          misc         stat
+1029  11    119   1257  13    1404  15    2     213  227   24   253  2813  316   412  799  848  94   cmdline     ioports        modules      swaps
+103   110   1191  1259  130   1406  150   20    214  2275  240  254  2821  32    413  80   85   945  consoles    irq            mounts       sys
+
+pavel@ubuntu:/$ ls /home
+pavel
+
+pavel@ubuntu:/$ cat /etc/hosts
+127.0.0.1       localhost
+127.0.1.1       ubuntu
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+pavel@ubuntu:/$ cat /etc/shells
+
+# /etc/shells: valid login shells
+/bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/bin/dash
+/usr/bin/dash
+pavel@ubuntu:/$
