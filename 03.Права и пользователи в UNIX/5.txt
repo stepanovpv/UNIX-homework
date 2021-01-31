@@ -1,0 +1,38 @@
+# Создать группу developer и несколько пользователей, входящих в нее. Создать директорию для совместной работы. 
+# Сделать так, чтобы созданные одними пользователями файлы могли изменять другие пользователи этой группы.
+
+# Создаем группу developre
+pavel@ubuntu:/home$ sudo groupadd developer
+
+#Добавляем двух пользователей dev1 и dev2, назначаем им членство в группе developer
+pavel@ubuntu:/home$ sudo useradd -m -G developer -s /bin/bash dev1
+
+pavel@ubuntu:/home$ sudo useradd -m -G developer -s /bin/bash dev2
+
+# Создаем директорию developer и меняем группу директории. Меняем права группы.
+pavel@ubuntu:~$ mkdir developer
+
+pavel@ubuntu:~$ sudo chgrp -R developer developer/
+
+pavel@ubuntu:~$ sudo chmod 2470 developer/ # Устанавливаем, в т.ч., SGID для наследования группы
+
+# Проверяем переключаеся на одного из созданных пользователей, создаем файл, смотрим права, 
+# переключаемся на другого пользователя группы, вносии изменения, проверяем.
+pavel@ubuntu:~$ su dev1
+Пароль:
+
+dev1@ubuntu:/home/pavel$ cd developer
+
+dev1@ubuntu:/home/pavel/developer$ touch test
+
+dev1@ubuntu:/home/pavel/developer$ ls -l
+итого 0
+-rw-rw-r-- 1 dev1 developer 0 янв 31 15:08 test
+
+dev1@ubuntu:/home/pavel/developer$ su dev2
+Пароль:
+
+dev2@ubuntu:/home/pavel/developer$ echo '123' > test
+
+dev2@ubuntu:/home/pavel/developer$ cat test
+123

@@ -1,0 +1,24 @@
+# Создать в директории для совместной работы поддиректорию для обмена файлами, 
+# но чтобы удалять файлы могли только их создатели.
+
+# В директории из предыдущего задания создаем новую папку и назначем ей права, включая sticky bit
+dev1@ubuntu:/home/pavel/developer$ mkdir sub
+
+dev1@ubuntu:/home/pavel/developer$ chmod 2770 sub/ #права и наследование группы
+
+dev1@ubuntu:/home/pavel/developer$ chmod +t sub/ #добавляем sticky bit
+
+dev1@ubuntu:/home/pavel/developer$ ls -lh
+итого 8,0K
+drwxrws--T 2 dev1 developer 4,0K янв 31 15:21 sub
+
+# Проверяем. Под dev1 создаем файл 1. Переключаемся на пользователя dev 2 и пробуем удалить.
+dev1@ubuntu:/home/pavel/developer/sub$ touch 1
+
+dev1@ubuntu:/home/pavel/developer/sub$ su dev2
+Пароль:
+
+dev2@ubuntu:/home/pavel/developer/sub$ rm 1
+rm: невозможно удалить '1': Операция не позволена
+
+# Из под dev1 удаление происходит без ошибок.

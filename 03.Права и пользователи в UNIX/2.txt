@@ -1,0 +1,27 @@
+# Дать созданным файлам другие, произвольные имена. Создать новую символическую ссылку. 
+Переместить ссылки в другую директорию.
+
+pavel@ubuntu:~$ mv file2 test1
+
+pavel@ubuntu:~$ mv file4 test2
+
+# Здесь при создании символьной ссылки указываем полный путь к исходному файлу
+# чтобы ссылка работала при копировании:
+
+pavel@ubuntu:~$ ln -s /home/pavel/test1 test3
+
+pavel@ubuntu:~$ ln -s /home/pavel/test2 test4
+
+pavel@ubuntu:~$ mkdir TEST
+
+pavel@ubuntu:~$ mv test3 test4 TEST
+
+pavel@ubuntu:~$ ls -l TEST/
+итого 0
+lrwxrwxrwx 1 pavel pavel 17 янв 31 13:34 test3 -> /home/pavel/test1
+lrwxrwxrwx 1 pavel pavel 17 янв 31 13:35 test4 -> /home/pavel/test2
+
+pavel@ubuntu:~$ cat TEST/test3
+Hello world!
+pavel@ubuntu:~$ cat TEST/test4
+Hello world!

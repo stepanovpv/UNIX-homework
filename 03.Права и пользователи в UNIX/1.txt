@@ -1,0 +1,35 @@
+# Создать файл file1 и наполнить его произвольным содержимым. Скопировать его в file2. 
+# Создать символическую ссылку file3 на file1. Создать жесткую ссылку file4 на file1. 
+# Посмотреть, какие айноды у файлов. Удалить file1. Что стало с остальными созданными 
+# файлами? Попробовать вывести их на экран.
+
+pavel@ubuntu:~$ echo 'Hello world!' > file1
+
+pavel@ubuntu:~$ cp file1 file2
+
+pavel@ubuntu:~$ ln -s file1 file3
+
+pavel@ubuntu:~$ ln file1 file4
+
+pavel@ubuntu:~$ ls -li
+итого 416
+ 657135 -rw-rw-r-- 2 pavel pavel     13 янв 31 13:16  file1
+ 657137 -rw-rw-r-- 1 pavel pavel     13 янв 31 13:16  file2
+ 657138 lrwxrwxrwx 1 pavel pavel      5 янв 31 13:17  file3 -> file1
+ 657135 -rw-rw-r-- 2 pavel pavel     13 янв 31 13:16  file4
+ 
+pavel@ubuntu:~$ rm file1
+ 
+# При удалении исходного файла file1:
+
+# Копия на файл file2 осталась без изменений:
+pavel@ubuntu:~$ cat file2
+Hello world!
+
+# При попытке просмотра file3, который является символической ссылкой на file1 возвращается ошибка, что логично, т.к. исходного файла нет
+pavel@ubuntu:~$ cat file3
+cat: file3: Нет такого файла или каталога
+
+# hardlink file4 остался без изменений
+pavel@ubuntu:~$ cat file4
+Hello world!
