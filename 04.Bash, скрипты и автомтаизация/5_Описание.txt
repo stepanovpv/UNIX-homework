@@ -1,0 +1,74 @@
+# Создать скрипт ownersort.sh, который в заданной папке копирует файлы в 
+# директории, названные по имени владельца каждого файла. Учтите, что файл 
+# должен принадлежать соответствующему владельцу.
+
+# Cоздаем папку
+
+pavel@ubuntu:~$ mkdir owner
+
+# Все пользователи находятся в одной группе. меняем папке группу.
+# и даем права, включая SUID
+
+pavel@ubuntu:~$ sudo chgrp developer owner/
+
+# Переходим в папку и под каждым из пользователей воздаём по паре файлов.
+
+pavel@ubuntu:~$ cd owner
+
+pavel@ubuntu:~/owner$ touch file{1..2}
+
+pavel@ubuntu:~/owner$ su dev1
+Пароль:
+dev1@ubuntu:/home/pavel/owner$ touch file{3..4}
+
+dev1@ubuntu:/home/pavel/owner$ su dev2
+Пароль:
+dev2@ubuntu:/home/pavel/owner$ touch file{5..6}
+
+pavel@ubuntu:~/owner$ ls -l
+итого 4
+-rw-rw-r-- 1 pavel pavel       0 фев  3 16:11 file1
+-rw-rw-r-- 1 pavel pavel       0 фев  3 16:11 file2
+-rw-rw-r-- 1 dev1  dev1        0 фев  3 16:18 file3
+-rw-rw-r-- 1 dev1  dev1        0 фев  3 16:18 file4
+-rw-rw-r-- 1 dev2  dev2        0 фев  3 16:19 file5
+-rw-rw-r-- 1 dev2  dev2        0 фев  3 16:19 file6
+
+# Запускаем скрипт
+
+pavel@ubuntu:~/owner$ ./ownersort.sh
+
+# Проверяем 
+
+pavel@ubuntu:~/owner$ ls -l
+итого 16
+drwxrwsr-x 2 pavel developer 4096 фев  3 21:26 dev1
+drwxrwsr-x 2 pavel developer 4096 фев  3 21:26 dev2
+-rwxrwxr-x 1 pavel developer  177 фев  3 21:19 ownersort.sh
+drwxrwsr-x 2 pavel developer 4096 фев  3 21:26 pavel
+
+pavel@ubuntu:~/owner$ tree
+.
+├── dev1
+│   ├── file3
+│   └── file4
+├── dev2
+│   ├── file5
+│   └── file6
+├── ownersort.sh
+└── pavel
+    ├── file1
+    └── file2
+
+3 directories, 7 files
+
+pavel@ubuntu:~$ ls -l owner/dev1
+итого 0
+-rw-rw-r-- 1 dev1 developer 0 фев  3 21:17 file3
+-rw-rw-r-- 1 dev1 developer 0 фев  3 21:17 file4
+
+# Все создатели сохранены
+
+
+
+
