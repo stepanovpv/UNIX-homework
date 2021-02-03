@@ -1,0 +1,18 @@
+# Написать скрипт, который удаляет из текстового файла пустые строки и заменяет маленькие
+# символы на большие (воспользуйтесь tr или sed ).
+
+# Есть файл file1. В файле содержимое:
+
+pavel@ubuntu:~/scripts$ pavel@ubuntu:~/scripts$ cat file1
+Hello
+
+world
+
+
+pavel@ubuntu:~/scripts$
+
+# Применяем скрипт 1.sh
+
+pavel@ubuntu:~/scripts$ ./1.sh file1
+HELLO
+WORLD
