@@ -1,0 +1,40 @@
+# Изменить адрес DNS на 1.1.1.1 и проверить доступность интернета, 
+например, открыв любой браузер на адрес https://geekbrains.ru.
+
+# Изменяем натсройки сети с помощью netplan
+
+pavel@ubuntu:~$ sudo nano /etc/netplan/01-network-manager-all.yaml
+
+# Let NetworkManager manage all devices on this system
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    ens33:
+      dhcp4: no
+      addresses:
+      - 192.168.88.21/24
+      gateway4: 192.168.88.1
+      nameservers:
+        addresses: [1.1.1.1]
+		
+# Проверяем
+
+pavel@ubuntu:~$ pavel@ubuntu:~$ systemd-resolve --status
+Global
+...
+  Current DNS Server: 1.1.1.1
+         DNS Servers: 1.1.1.1
+          DNS Domain: ~.
+		  
+pavel@ubuntu:~$ nslookup geekbrains.ru
+Server:         127.0.0.53
+Address:        127.0.0.53#53
+
+Non-authoritative answer:
+Name:   geekbrains.ru
+Address: 178.248.232.209
+
+# Доступ из браузера так же осуществляется. См. скриншот		  
+
+		
