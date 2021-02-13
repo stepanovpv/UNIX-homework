@@ -1,0 +1,52 @@
+# Установить Nginx и настроить его на работу с php-fpm.
+
+1. Установлен nginx
+
+2. Установлен php-fpm
+
+3. Проведена настройка (в том числе установлен SSL-сертификат, проверена работа с сайтом, который делал на предыдущем курсе,
+а так же с myphpadmin).
+
+Конфигурационный файл:
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name  stepv.rk;
+}
+
+server {
+    listen              443 ssl;
+    server_name stepv.tk;
+
+    ssl_certificate     /etc/letsencrypt/live/stepv.tk/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/stepv.tk/privkey.pem;
+
+#    root /usr/share/phpmyadmin/;  # путь к myphpadmin
+#    myphp  index.php;
+
+    root /var/www/stepv/; # путь к собственному сайту
+    index index.php
+
+    client_max_body_size 100M;
+
+    autoindex off;
+
+     location / {
+        try_files $uri $uri/ /index.php?$query_string;
+      }
+
+    location ~ \.php$ {
+         fastcgi_pass unix:/var/run/php/php-fpm.sock;
+         fastcgi_index index.php;
+         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+         include fastcgi_params;
+    }
+
+    location ~* \.(ico|css|js)(\?[0-9]+)?$ {
+         expires max;
+         log_not_found off;
+    }
+}
+
+4. См. скриншоты. Сайт решил оставить тот, который делал ранее. 

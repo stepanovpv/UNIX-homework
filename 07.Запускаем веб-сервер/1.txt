@@ -1,0 +1,21 @@
+# Установить Apache2. Прислать лог вводимых команд либо скриншот.
+
+pavel@instance-1:~$ sudo apt install apache2
+
+pavel@instance-1:~$ ls /etc/apache2
+apache2.conf    conf-enabled  magic           mods-enabled  sites-available
+conf-available  envvars       mods-available  ports.conf    sites-enabled
+
+pavel@instance-1:~$ echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
+ServerName localhost
+
+pavel@instance-1:~$ sudo a2enconf fqdn
+Enabling conf fqdn.
+To activate the new configuration, you need to run:
+  systemctl reload apache2
+  
+pavel@instance-1: systemctl reload apache2
+
+(см. скриншот)
+
+	

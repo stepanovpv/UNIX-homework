@@ -1,0 +1,59 @@
+# Установить MySQL. Проверить работу, через консольного клиента, проверить команды select user from mysql.users; и select * from users;
+
+mysql> select user from mysql.user;
++------------------+
+| user             |
++------------------+
+| debian-sys-maint |
+| mysql.infoschema |
+| mysql.session    |
+| mysql.sys        |
+| root             |
+| stepv            |
++------------------+
+6 rows in set (0.00 sec)
+
+# Так же создана БД phpmyadmin для работы с Phpmyadmin.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| myphpadmin         |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+# В базу развернута дефолтная база Myphpadmin
+
+mysql> show tables
+    -> ;
++------------------------+
+| Tables_in_phpmyadmin   |
++------------------------+
+| pma__bookmark          |
+| pma__central_columns   |
+| pma__column_info       |
+| pma__designer_settings |
+| pma__export_templates  |
+| pma__favorite          |
+| pma__history           |
+| pma__navigationhiding  |
+| pma__pdf_pages         |
+| pma__recent            |
+| pma__relation          |
+| pma__savedsearches     |
+| pma__table_coords      |
+| pma__table_info        |
+| pma__table_uiprefs     |
+| pma__tracking          |
+| pma__userconfig        |
+| pma__usergroups        |
+| pma__users             |
++------------------------+
+19 rows in set (0.01 sec)
+
