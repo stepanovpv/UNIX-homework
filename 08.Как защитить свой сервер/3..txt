@@ -1,0 +1,37 @@
+# Поставить и настроить fail2ban на блокировку SSH запросов с неверным паролем/ключом. Проверить работу fail2ban
+
+1. Устанавливаем утилиту fail2ban
+
+pavel@instance-1:~$ sudo apt install fail2ban
+
+2. Добавляем таймауты.
+
+pavel@instance-1:~$ sudo vim /etc/fail2ban/jail.d/defaults-debian.conf
+[sshd]
+enabled = true
+bantime = 60
+maxretry = 5
+
+3. Перезапускаем сервис
+
+pavel@instance-1:~$ sudo systemctl restart fail2ban
+
+4. Проверяем, пробуем несколько раз неуспешно подключиться с машины, на которой не установлен ключом
+
+ssh stepv.tk
+
+IP заблокирован
+
+2. Проверяем правила. Как видно, fail2ban добавил блокировку.
+
+pavel@instance-1:~$ sudo iptables -S
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-N f2b-sshd
+-A INPUT -p tcp -m multiport --dports 22 -j f2b-sshd
+-A INPUT -p tcp -m multiport --dports 80,443,22 -j ACCEPT
+-A INPUT -j DROP
+-A f2b-sshd -j RETURN
+
+Настройка по паролю не производилась, атк как авторизация по паролю отключена ранее.

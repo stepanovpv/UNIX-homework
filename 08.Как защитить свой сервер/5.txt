@@ -1,0 +1,44 @@
+# Настроить nginx на редирект запросов с 80 порта на 443 и подключить полученные SSL сертификаты
+
+Для выполнения задания конфиг nginx для нашего домена будет выглядеть следующим образом:
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name  stepv.rk;
+    return 301 https://$host$request_uri; # Перенаправление http на https
+}
+
+server {
+    listen              443 ssl;
+    server_name stepv.tk;
+
+    ssl_certificate     /etc/letsencrypt/live/stepv.tk/fullchain.pem; # Сертификаты
+    ssl_certificate_key /etc/letsencrypt/live/stepv.tk/privkey.pem;
+
+#    root /usr/share/phpmyadmin/;
+#    index  index.php;
+
+    root /var/www/stepv/;
+    index index.php
+
+    client_max_body_size 100M;
+
+    autoindex off;
+
+     location / {
+        try_files $uri $uri/ /index.php?$query_string;
+      }
+
+    location ~ \.php$ {
+         fastcgi_pass unix:/var/run/php/php-fpm.sock;
+         fastcgi_index index.php;
+         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+         include fastcgi_params;
+    }
+
+    location ~* \.(ico|css|js)(\?[0-9]+)?$ {
+         expires max;
+         log_not_found off;
+    }
+}

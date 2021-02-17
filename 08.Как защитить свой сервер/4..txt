@@ -1,0 +1,19 @@
+# Установить certbot и получить SSL сертификат для вашего домена
+
+Так как сертификаты для домена были установлены ранее, с помощью Certbot, то восстановить лог установки 
+и настройки проблематично. Установка выполнялась в соответствии с инструкцией на оф.сайте.
+Однако, сейчас просто выведем список полученных ранее сертификатов:
+
+pavel@instance-1:~$ sudo certbot certificates
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Found the following certs:
+  Certificate Name: stepv.tk
+    Serial Number: 4c4befbc7c0601d2e655f0a30977a5a5875
+    Key Type: RSA
+    Domains: stepv.tk
+    Expiry Date: 2021-05-13 18:23:20+00:00 (VALID: 85 days)
+    Certificate Path: /etc/letsencrypt/live/stepv.tk/fullchain.pem
+    Private Key Path: /etc/letsencrypt/live/stepv.tk/privkey.pem
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

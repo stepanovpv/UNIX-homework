@@ -1,0 +1,26 @@
+# 1. Настроить сетевой фильтр, чтобы из внешней сети можно было обратиться только к сервисам http (80 и 443) и ssh. 
+# Отключить фаервол облачного провайдера.
+
+1. Cloudflare не проксирует траффик. Скриншот 1_1.png
+
+2. Настраиваем iptables. Проверяем:
+
+pavel@instance-1:~$ sudo iptables -S
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-A INPUT -p tcp -m multiport --dports 80,443,22 -j ACCEPT
+-A INPUT -j DROP
+
+3. Проверяем открытые порты:
+
+pavel@ubuntu:~$ nmap stepv.tk
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-17 10:08 MSK
+Nmap scan report for stepv.tk (35.226.81.113)
+Host is up (0.14s latency).
+rDNS record for 35.226.81.113: 113.81.226.35.bc.googleusercontent.com
+Not shown: 997 filtered ports
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+443/tcp open  https
